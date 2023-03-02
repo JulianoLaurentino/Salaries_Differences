@@ -1,3 +1,5 @@
+#1ª alternativa
+
 SELECT
   ABS((SELECT max(salary)
 FROM db_employee emp
@@ -7,3 +9,15 @@ WHERE department = 'marketing') -
    FROM db_employee emp
    JOIN db_dept dept ON emp.department_id = dept.id
    WHERE department = 'engineering')) AS salary_difference
+   
+   
+#2ª alternativa
+
+SELECT ABS(
+
+MAX(CASE WHEN department = 'engineering' THEN salary END) - MAX(CASE WHEN department = 'marketing' THEN salary END) 
+)  AS max_salary_diff
+
+FROM db_employee e
+INNER JOIN db_dept d ON e.department_id = d.id
+
