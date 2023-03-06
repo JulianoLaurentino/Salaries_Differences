@@ -21,3 +21,13 @@ MAX(CASE WHEN department = 'engineering' THEN salary END) - MAX(CASE WHEN depart
 FROM db_employee e
 INNER JOIN db_dept d ON e.department_id = d.id
 
+
+#3ª alternativa (caso conheça o id correspondente ao "departamento")
+
+select 
+abs((select max(salary)
+from db_employee 
+where department_id = 4) -
+(select max(salary)
+from db_employee 
+where department_id = 1)) as salary_difference
